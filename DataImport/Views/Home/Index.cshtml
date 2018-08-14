@@ -1,0 +1,87 @@
+﻿@using DataImport.Models
+@model IEnumerable<AccountModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        table th {
+            background-color: #B8DBFD;
+            color: #333;
+            font-weight: bold;
+        }
+
+        table th, table td {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        table, table table td {
+            border: 0px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="postedFile" />
+    <input type="submit" value="Import" />
+}
+@if (Model.Any())
+{
+    <hr />
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Account Number</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Middle Initial</th>
+            <th>Company Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone Number</th>
+            <th>Account Creation Date</th>
+            <th>Current Balance</th>
+            <th>Account Type</th>
+        </tr>
+        @foreach (AccountModel account in Model)
+        {
+        <tr>
+            <td>@account.AccountNumber</td>
+            <td>@account.LastName</td>
+            <td>@account.FirstName</td>
+            <td>@account.MiddleInitial</td>
+            <td>@account.CompanyName</td>
+            <td>@account.Address</td>
+            <td>@account.City</td>
+            <td>@account.State</td>
+            <td>@account.Zip</td>
+            <td>@account.PhoneNumber</td>
+            <td>@account.AccountCreationDate</td>
+            <td>@account.CurrentBalance</td>
+            <td>@account.AccountType</td>
+        </tr>
+        }
+    </table>
+}
+</body>
+</html>
